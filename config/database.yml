@@ -12,20 +12,29 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: admin  
-  password: <%= ENV["DATABASE_PASSWORD"] %>
-  host: your-db-host-name.render.com  
-  port: 3306
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # username: admin  
+  # password: <%= ENV["DATABASE_PASSWORD"] %>
+  # host: your-db-host-name.render.com  
+  # port: 3306
 
 development:
   <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
   database: prototype_42531_development
 
 test:
   <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
   database: prototype_42531_test
 
 production:
   <<: *default
-  database: prototype_42531_production
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
