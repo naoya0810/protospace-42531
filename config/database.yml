@@ -14,8 +14,9 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password:
-　socket: /tmp/mysql.sock
+  password: password: <%= ENV["DATABASE_PASSWORD"] %> # ←環境変数から読み取るのが安全
+  host: your-db-host-name.render.com         # ←Renderで使っているMySQLのホスト名
+  port: 3306
 
 development:
   <<: *default
